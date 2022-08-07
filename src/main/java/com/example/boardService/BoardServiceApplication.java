@@ -10,6 +10,7 @@ public class BoardServiceApplication {
 		SpringApplication.run(BoardServiceApplication.class, args);
 
 
+
 	}
 
 }
