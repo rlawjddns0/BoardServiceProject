@@ -7,10 +7,13 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @ToString
@@ -21,6 +24,7 @@ import java.util.Objects;
         @Index(columnList = "createdBy"),
 
 })
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Article {
 
@@ -33,6 +37,13 @@ public class Article {
     @Setter @Column(nullable = false, length = 10000) private String content;//본문
 
     @Setter private String hashtag;//해시태그
+
+
+    @OrderBy("id")
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    @ToString.Exclude //순환 참조가 일어날수 있는걸 끊는다
+    private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
+
 
 
     //최초 인서트할때 자동으로 넣어준다.
