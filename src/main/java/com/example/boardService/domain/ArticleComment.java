@@ -21,9 +21,8 @@ import java.util.Objects;
         @Index(columnList = "createdBy"),
 
 })
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class ArticleComment {
+public class ArticleComment extends EntityFileds{
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long Id;
@@ -33,22 +32,6 @@ public class ArticleComment {
 
     @Setter @Column(nullable = false, length = 500) private String content;// 댓글 본문
 
-    //최초 인서트할때 자동으로 넣어준다.
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime createdAt;//생성 일시
-    @CreatedBy
-    @Column(nullable = false , length = 100)
-    private String createdBy;//생성자
-
-    //수정할때 자동으로 넣어준다.
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modifiedAt;//수정일시
-    //수정자나 생성자는 JpaConfig에서 EnableJpaAuditing을 사용하여 설정했다.
-    @LastModifiedBy
-    @Column(nullable = false, length = 100)
-    private String modifiedBy;//수정자
 
     protected ArticleComment() {
 

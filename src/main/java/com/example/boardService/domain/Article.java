@@ -24,9 +24,8 @@ import java.util.Set;
         @Index(columnList = "createdBy"),
 
 })
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Article {
+public class Article extends EntityFileds{
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,24 +43,6 @@ public class Article {
     @ToString.Exclude //순환 참조가 일어날수 있는걸 끊는다
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
-
-
-    //최초 인서트할때 자동으로 넣어준다.
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime createdAt;//생성 일시
-    @CreatedBy
-    @Column(nullable = false , length = 100)
-    private String createdBy;//생성자
-
-    //수정할때 자동으로 넣어준다.
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modifiedAt;//수정일시
-    //수정자나 생성자는 JpaConfig에서 EnableJpaAuditing을 사용하여 설정했다.
-    @LastModifiedBy
-    @Column(nullable = false, length = 100)
-    private String modifiedBy;//수정자
 
     protected Article(){} //new로 생성 못하게 막는다
 
