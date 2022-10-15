@@ -16,6 +16,6 @@ public class JpaConfig {
     public AuditorAware<String > auditorAware(){
         return () -> Optional.of("kim"); //TODO: 스프링 시큐리티로 인증 기능을 붙일떄 수정 해야한다.
     }
-    
+
 
 }
