@@ -1,5 +1,6 @@
 package com.example.boardService.controller;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Disabled("SPsring Data Rest 통합 테스트는 제외")
 @DisplayName("Data Rest TEst")
 @SpringBootTest
 @AutoConfigureMockMvc
